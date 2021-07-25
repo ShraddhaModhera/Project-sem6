@@ -1,0 +1,95 @@
+﻿@model EcommerceProject.Models.Payment
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Premier Mart | Payment</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/Bootstrap-Payment-Form.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+
+<body>
+    <div style="color:darkred; font-size:15px; text-align:right;">
+        <u>
+            @Session["email"]
+        </u>
+    </div>
+    <br />
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row .payment-dialog-row">
+            <div class="col-12 col-md-4 offset-md-4">
+                <div class="card credit-card-box">
+                    <div class="card-header">
+                        <center>
+                            <h3><span class="panel-title-text">Payment Details </span><img class="img-fluid panel-title-image" src="~/Images/accepted_cards.png"></h3>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <div class="col">
+                            <div class="container" id="card-colm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.RadioButton("Payment_Method", "Credit Card") Credit Card
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.RadioButton("Payment_Method", "Debit Card") Debit Card
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <form id="payment-form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="cardNumber">Card number </label>
+                                        <div class="input-group"><input class="form-control" type="tel" id="cardNumber" placeholder="Valid Card Number"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
+                                    </div>
+                                </div>
+                                <div class="col"><label class="form-label">Name On Card</label><input class="form-control" type="text" placeholder="Enter name here"></div>
+                            </div>
+                            <div class="row" id="dates-row">
+                                <div class="col-7">
+                                    <div class="form-group mb-3"><label class="form-label" for="cardExpiry"><span>Expiration </span><span>EXP </span> date</label><input class="form-control" type="tel" id="cardExpiry" placeholder="MM / YY"></div>
+                                </div>
+                                <div class="col-5 pull-right">
+                                    <div class="form-group mb-3"><label class="form-label" for="cardCVC">CV code</label><input class="form-control" type="tel" id="cardCVC" placeholder="CVC"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" id="cash">
+                                    @Html.RadioButton("Payment_Method", "Cash On Delivery") Cash On Delivery
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><button class="btn btn-success btn-lg d-block w-100" type="submit">
+                                    <i class="checkmark">✓</i>&nbsp;&nbsp;&nbsp;PROCEED
+                                </button></div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-12"><button class="btn btn-danger btn-lg d-block w-100" type="button" onclick="location.href='@Url.Action("Cancel", "UserProduct")'">
+                                    <i class="fa fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;CANCEL
+                                </button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/js/bootstrap.min.js"></script>
+    }
+</body>
+
+</html>

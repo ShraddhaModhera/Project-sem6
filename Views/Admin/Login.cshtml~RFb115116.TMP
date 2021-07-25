@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <link href="~/Scripts/Login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/template/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/template/dist/css/adminlte.min.css">
+</head>
+<body>
+    <script src="~/Scripts/Login.js"></script>
+    <section class="bg-credentials">
+        <div class="credentials-content">
+            <h1>Premier Mart</h1>
+            &nbsp;<p>Feel, Breathe and Live</p>
+        </div>
+    </section>
+
+    <section class="bg-form">
+        <div class="bg-formContent">
+            <img src="~/Images/logo1.PNG" height="50" width="100" />
+            <h1><u>Admin Login</u></h1>
+            <br /><br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <br /><label for="">UserName:</label> <br>
+                <input type="text" name="User"
+                       requrired><br />
+
+                @*<div class="form-valid--error">
+                <p>enter</p>
+            </div>*@
+
+                <br /><br /> <label for="">Password:</label><br>
+                <input type="password" name="Pass"
+                       minlength="6"
+                       maxlength="24"
+                       required> <br>
+
+                <br /><div class="center-content">
+                    <button id="js-submitItem">Login</button>
+                </div>
+
+                <div class="forgot" tabindex="0"> 
+                <a href="@Url.Action("Forget","Admin")" class="for">Can't Login? </a>
+                </div>
+            }
+        </div>
+    </section>
+    @if (ViewBag.msg != null)
+    {              
+    <div class="card-body">
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+             Invalid Username and Password!!
+        </div>
+    </div>           
+    }
+    <script src="~/template/plugins/jquery/jquery.min.js"></script>
+    <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>    
+</body>

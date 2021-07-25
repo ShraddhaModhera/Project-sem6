@@ -1,0 +1,150 @@
+﻿@model EcommerceProject.Models.Country
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+    <title>Premier Mart | Settings</title>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/Styles/Service.css" />
+
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Country")'" type="button" class="btn btn-block btn-danger">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="#">Localization</a></li>
+                        <li class="breadcrumb-item active">Add Country</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- form start -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card">
+
+                        <div class="card-header" style="background-color:darkseagreen; color:white;">
+                            <center><h4> Add Country </h4></center>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="name">Country Name</label>
+                                    @Html.EditorFor(model => model.Country_name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Country_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="code1">Iso Code-1</label><br />
+                                    @Html.EditorFor(model => model.Iso_code_1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Iso_code_1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="code2">Iso Code-2</label>
+                                    @Html.EditorFor(model => model.Iso_code_2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Iso_code_2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="postal">Postal Code Required</label><br />
+                                    @Html.RadioButton("Postcode_required", 1) Yes
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    @Html.RadioButton("Postcode_required", 0) No
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">    
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="status">Status</label><br />
+                                    @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Select", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <center>
+                                <div class="col-3">
+                                    <input type="submit" value="Add" class="btn btn-block" style="background-color:darkseagreen; color:white;" />
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+    }
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Sparkline -->
+    <script src="~/template/plugins/sparklines/sparkline.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/template/dist/js/pages/dashboard.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+</body>

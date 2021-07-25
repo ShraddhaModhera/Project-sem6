@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EcommerceProject.Models.Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = null;
+}
+<head>
+
+    <title>Premier Mart | Products</title>
+    <link href="~/css/style-starter.css" rel="stylesheet" />
+    <link href="~/css/Pro.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="features-4">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+
+                            <a href="@Url.Action("View", "UserProduct", new { id = item.Product_id })" class="image">
+                                <img class="img-responsive" src="@Url.Content(item.Image)" height="250">
+                            </a>
+                            <ul class="product-links">
+                                <li><a href="@Url.Action("View", "UserProduct", new { id = item.Product_id })"><i class="fa fa-shopping-bag"></i> Add to cart</a></li>
+                                <li><a href="@Url.Action("View", "UserProduct", new { id = item.Product_id })"><i class="fa fa-search"></i> Quick View</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="@Url.Action("View", "UserProduct", new { id = item.Product_id })">@item.Name</a></h3>
+                            <div class="price">$ @item.Price.00</div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+</body>

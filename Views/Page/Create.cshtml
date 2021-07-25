@@ -1,0 +1,155 @@
+﻿@model EcommerceProject.Models.Page
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+    <title>Premier Mart | CMS</title>
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/template/plugins/summernote/summernote-bs4.min.css">
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="~/template/plugins/codemirror/codemirror.css">
+    <link rel="stylesheet" href="~/template/plugins/codemirror/theme/monokai.css">
+    <!-- SimpleMDE -->
+    <link rel="stylesheet" href="~/template/plugins/simplemde/simplemde.min.css">
+
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Page")'" type="button" class="btn btn-block btn-danger">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">CMS</a></li>
+                        <li class="breadcrumb-item active">Add Pages</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- form start -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+
+                        <div class="card-header">
+                            <center><h4> Add Pages </h4></center>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="card-body">
+                            <p>General Information</p>
+                            <hr />
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="title">Page Title</label>
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="group">Page Group</label>
+                                    @Html.DropDownListFor(model => model.Page_group_id, new SelectList(Model.GroupSelect, "Page_group_id", "Group_name"), "Select", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="content">Page Content</label><br />
+                                    @Html.TextAreaFor(model => model.Intro, new { @class = "form-control", @id = "summernote" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="status">Status</label><br />
+                                    @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Select", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mtitle">Meta Title</label>
+                                    @Html.EditorFor(model => model.Meta_tag_title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mkey">Meta Keyword</label>
+                                    @Html.EditorFor(model => model.Meta_tag_keywords, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_keywords, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mcontent">Meta Content</label><br />
+                                    @Html.TextAreaFor(model => model.Meta_tag_description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <center>
+                                <div class="col-3">
+                                    <input type="submit" value="Add" class="btn btn-block btn-primary" />
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+    }
+    <!-- Summernote -->
+    <script src="~/template/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- CodeMirror -->
+    <script src="~/template/plugins/codemirror/codemirror.js"></script>
+    <script src="~/template/plugins/codemirror/mode/css/css.js"></script>
+    <script src="~/template/plugins/codemirror/mode/xml/xml.js"></script>
+    <script src="~/template/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/template/dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
+    </script>
+
+</body>

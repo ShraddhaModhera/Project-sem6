@@ -1,0 +1,14 @@
+﻿span.tag-active
+{
+    color : #56B768;
+    font : 15px Roboto;
+    background : #EEFBF4;
+    padding : 5px 15px;       
+}
+
+span.tag-inactive {
+    color: #F14E6E;
+    font: 15px Roboto;
+    background: #FDF0F3;
+    padding: 5px 15px;
+}

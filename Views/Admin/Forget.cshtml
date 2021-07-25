@@ -1,0 +1,71 @@
+﻿@{ Layout = null; }
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Premier Mart | Forgot</title>
+    <link href="~/css/regstyle.css" rel="stylesheet" />
+    <style>
+
+        input[id="txt-input"] {
+            width: 250px;
+            height: 45px;
+            margin-top: 2%;
+            padding: 15px;
+            font-size: 16px;
+            font-family: 'Abel', sans-serif;
+            color: #5E6472;
+            outline: none;
+            border: none;
+            border-radius: 0px 5px 5px 0px;
+            transition: 0.2s linear;
+        }
+
+        input:focus {
+            transform: translateX(-2px);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+@Html.AntiForgeryToken()
+
+
+                <div class="form-horizontal">
+                    <form>
+                        <div class="con">
+                            <header class="head-form">
+                                <br /><br /><br />
+                                <h2>Reset Password </h2>
+                                <p>Reset Password here using your Email ID</p>
+                            </header>
+                            <br />
+
+
+                            <br />
+                            <div class="field-set">
+                                <span class="text-success">
+                                    <center>
+                                        @ViewBag.Message
+                                    </center>
+                                </span>
+                                <br />
+                                <span>
+                                    <label class="control-label col-md-2">Email ID</label><br />
+                                    @Html.TextBox("EmailID", "", new { @class = "form-control", @placeholder = "Email", @id = "txt-input" })
+                                </span>
+                                <br><br />
+                            </div>
+
+
+                            <button class="log-in"> Reset </button>
+                        </div>
+                    </form>
+                </div>
+                }
+
+
+</body>
+</html>

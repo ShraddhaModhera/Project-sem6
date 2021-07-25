@@ -1,0 +1,203 @@
+﻿@*@model EcommerceProject.Models.Customer
+    @{
+        Layout = null;
+    }
+    <html lang="en">
+
+    <head>
+        <title>Premier Mart | SignUp</title>
+        <link href="~/Styles/Login.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+
+
+
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <h1>Create Account</h1>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.EditorFor(model => model.First_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.First_name, "", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "UserName", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm Password", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mobile", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+
+
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @id = "txt-input" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+
+                    <button type="submit">Sign Up</button>
+                }
+                </div>
+
+
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right">
+                        <h1>Welcome Friend!</h1>
+                        <h2>TO Our Online Shopping Center</h2>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <a href="@Url.Action("Login","Admin")">
+                            <button class="ghost" id="signIn">Login</button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+    </html>*@
+
+@model EcommerceProject.Models.Customer
+
+@{ 
+    ViewBag.Title = "";
+    Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Premier Mart | Registration</title>
+    <link href="~/css/regstyle.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                <strong>Success! </strong>@ViewBag.Message
+            </div> }
+
+    }
+    else
+    {
+
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-horizontal">
+                <form>
+                    <div class="con">
+                        <header class="head-form">
+                            <h2>SIGN UP</h2>
+                            <p>Sign Up here using your details</p>
+                        </header>
+
+
+                        <div class="field-set">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <span>
+                                <label>Full Name</label><br />
+                                @Html.EditorFor(model => model.First_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.First_name, "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <span>
+                                <label>UserName</label><br />
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "UserName", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <span>
+                                <label>Email</label><br />
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <span>
+                                <label>Password</label><br />
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <span>
+                                <label>Confirm Password</label><br />
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm Password", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <span>
+                                <label>Contact No</label><br />
+                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mobile", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+
+                            <br /><br />
+                            <span>
+                                <label class="control-label">Address</label><br />
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @id = "txt-input" } })
+                            </span>&nbsp;
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <button class="log-in"> Sign Up </button>
+
+                            <div>
+                                <center>
+                                    <strong>
+                                        <span>Already have an account? </span>
+                                        @Html.ActionLink("Login", "Login")
+                                    </strong>
+                                </center>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div> if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Error!</strong>@ViewBag.Message
+                </div>}
+        }
+
+    }
+
+</body>

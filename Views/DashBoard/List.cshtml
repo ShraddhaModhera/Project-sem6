@@ -1,0 +1,465 @@
+﻿@model IEnumerable<EcommerceProject.Models.Product>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+    <title>Premier Mart | DashBoard</title>
+
+    @*Tempusdominus Bootstrap 4*@
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    @*jsGrid*@
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <link rel="stylesheet" href="~/Styles/Service.css" />
+
+</head>
+<body>
+
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <p>Overview Dashboard</p>
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>9</h3>
+
+                            <p>Orders</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">                       
+                            <h3>
+                                @*@Convert.ToInt32(Session["pay"])*@
+                                5
+                            </h3>
+
+                            <p>Payments</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-card"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+
+                            <h3>
+                                @*@Model.Count()*@
+                                25
+                            </h3>
+
+                            <p>Products</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-cart"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>
+                                @*@Convert.ToInt32(ViewBag.cust)*@
+                                7
+                            </h3>
+
+                            <p>Customers</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </section>
+    <br />
+
+    <div class="content">
+        <div class="container-fluid">
+            <p>Top Selling Products</p>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="image">
+                                <img src="~/Images/Running shoes.jpg" height="150" width="200">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <p>
+                                    <b>Bourge</b>
+                                    <br /> Men's Loire-z57 Running Shoes
+                                    <br /> RS.800.00
+                                </p>
+                            </center>
+                            <a href="@Url.Action("Home","Home")" class="nav-link">
+                                <center><b>View Product</b></center>
+                            </a>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="image">
+                                <img src="~/Images/handbag-combo.jpg" height="150" width="200">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <p>
+                                    <b>Mammon</b>
+                                    <br /> Women's PU Leather Handbag Combo
+                                    <br /> RS.649.50
+                                </p>
+                            </center>
+                            <a href="@Url.Action("Home","Home")" class="nav-link">
+                                <center><b>View Product</b></center>
+                            </a>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="image">
+                                <img src="~/Images/Camera.jpg" height="150" width="200">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <p>
+                                    <b>Panasonic</b>
+                                    <br /> LUMIX G7 16.00 MP 4K Interchangeable Camera
+                                    <br /> RS. 38,990.00
+                                </p>
+                            </center>
+                            <a href="@Url.Action("Home","Home")" class="nav-link">
+                                <center><b>View Product</b></center>
+                            </a>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="image">
+                                <img src="~/Images/plain top.jpg" height="150" width="200">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <p>
+                                    <b>J B Fashion</b>
+                                    <br /> Plain Women Top with Half Sleeves for Women top
+                                    <br /> RS.399.00
+                                </p>
+                            </center>
+                            <a href="@Url.Action("Home","Home")" class="nav-link">
+                                <center><b>View Product</b></center>
+                            </a>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card card-primary">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Monthly Sales</h3>
+                                @*<a href="javascript:void(0);">View Report</a>*@
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">$18,230.00</span>
+                                    <span>Sales Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up"></i> 33.1%
+                                    </span>
+                                    <span class="text-muted">Since last month</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="sales-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This year
+                                </span>
+
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last year
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+                <div class="col-lg-6">
+
+                    <!-- solid sales graph -->
+                    @*<div class="card bg-gradient-info">*@
+                    <div class="card card-danger">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Online Store Visitors</h3>
+                                @*<a href="javascript:void(0);">View Report</a>*@
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">820</span>
+                                    <span>Visitors Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up"></i> 12.5%
+                                    </span>
+                                    <span class="text-muted">Since last week</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This Week
+                                </span>
+
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last Week
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <!-- TABLE: LATEST ORDERS -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card card-warning">
+                        <div class="card-header border-transparent ">
+                            <h3 class="card-title">Recent Customers</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>IP Address</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>132.25.25.45</td>
+                                            <td>Riddhi</td>
+                                            <td>r*****2***g***l.com</td>
+                                            <td><span class="badge badge-success">Shipped</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>154.65.25.321</td>
+                                            <td>Shraddha</td>
+                                            <td>s******a2***g***l.com</td>
+                                            <td><span class="badge badge-warning">Pending</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>548.32.15.14</td>
+                                            <td>Nimesh</td>
+                                            <td>n*****1***g***l.com</td>
+                                            <td><span class="badge badge-danger">Delivered</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>178.25.26.931</td>
+                                            <td>Rahi</td>
+                                            <td>r***8****g***l.com</td>
+                                            <td><span class="badge badge-info">Processing</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card card-success">
+                        <div class="card-header border-transparent ">
+                            <h3 class="card-title">Recent Selling Products</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Id</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>                                           
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SKU)
+                                            </td>
+                                            <td>
+                                                <img src="@Url.Content(item.Image)" height="50" width="50" />
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @if (item.Is_active == 1)
+                                                {
+                                                    <span class="tag-active" style="width: 71px; display: inline-block; padding: 5px 15px; border-radius: 20px;">Active</span>
+                                                }
+                                                else if (item.Is_active == 0)
+                                                {
+                                                    <span class="tag-inactive" style="width: 73px; display: inline-block; padding: 5px 15px; border-radius: 20px;">In - Active</span>
+                                                }
+                                            </td>
+
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/template/plugins/jquery/jquery.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/template/plugins/chart.js/Chart.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/template/dist/js/pages/dashboard3.js"></script>
+
+</body>
+
+
+

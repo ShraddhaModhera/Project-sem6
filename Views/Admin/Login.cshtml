@@ -1,0 +1,244 @@
+﻿@*@{
+        Layout = null;
+    }
+    <head>
+        <title>Premier Mart | Login</title>
+        <link href="~/Scripts/Login.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/template/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="~/template/dist/css/adminlte.min.css">
+    </head>
+    <body>
+        <section class="bg-credentials">
+            <div class="credentials-content">
+                <h1>Premier Mart</h1>
+                &nbsp;<p>Feel, Breathe and Live</p>
+            </div>
+        </section>
+
+        <section class="bg-form">
+            <div class="bg-formContent">
+                <img src="~/Images/logo1.PNG" height="50" width="100" />
+                <h1><u>Login</u></h1>
+                <br /><br />
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <br /><label for="">UserName:</label> <br>
+                    <input type="text" name="User"
+                           requrired><br />
+
+                    <br /><br /> <label for="">Password:</label><br>
+                    <input type="password" name="Pass"
+                           minlength="6"
+                           maxlength="24"
+                           required> <br>
+
+                    <br /><div class="center-content">
+                        <button id="js-submitItem">Login</button>
+                    </div>
+
+                    <div class="forgot" tabindex="0">
+                    <a href="@Url.Action("Forget","Admin")" class="for">Can't Login? </a>
+                    </div>
+                }
+            </div>
+        </section>
+        @if (ViewBag.msg != null)
+        {
+        <div class="card-body">
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                 Invalid Username and Password!!
+            </div>
+        </div>
+        }
+        <script src="~/template/plugins/jquery/jquery.min.js"></script>
+        <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </body>*@
+
+<!--<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html lang="en">
+
+<head>
+    <title>Premier Mart | Login</title>
+    <link href="~/Styles/Login.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <h1>Login</h1>
+                <input type="email" placeholder="Email" name="User" requrired />
+                <input type="password" placeholder="Password" name="Pass" minlength="6" maxlength="24" required />
+                <a href="@Url.Action("Forget","Admin")">Forgot your password?</a>
+                <button>Login</button>
+                <div class="err" style="color:red;"></div>
+            }
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">-->
+@*<div class="overlay-panel overlay-left">
+        <h1>Welcome Friend!</h1>
+        <h2>TO Our Online Shopping Center</h2>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Login</button>
+    </div>*@
+<!--<div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <h2>Welcome To Our Online Shopping Center</h2>
+                <p>Enter your personal details and start journey with us</p>
+                <a href="@Url.Action("Signup","Admin")">
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.msg != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("Invalid Username and Password");
+        };
+    </script>
+
+
+
+}-->
+@*<script type="text/javascript">
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>*@
+
+<!--</body>
+
+</html>-->
+
+@model EcommerceProject.Models.CustomerLogin
+
+@{ Layout = null; }
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Premier Mart | Login</title>
+    <link href="~/css/regstyle.css" rel="stylesheet" />
+    <style>
+
+        input[id="txt-input"] {
+            width: 250px;
+            height: 45px;
+            margin-top: 2%;
+            padding: 15px;
+            font-size: 16px;
+            font-family: 'Abel', sans-serif;
+            color: #5E6472;
+            outline: none;
+            border: none;
+            border-radius: 0px 5px 5px 0px;
+            transition: 0.2s linear;
+        }
+
+        input:focus {
+            transform: translateX(-2px);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-horizontal">
+            <form>
+                <div class="con">
+                    <header class="head-form">
+                        <br /><br /><br />
+                        <h2>LOGIN </h2>
+                        <p>Login here using your Email and Password</p>
+                    </header>
+
+
+                    <div class="field-set">
+                        @*<div class="text-danger">
+                                @ViewBag.Message
+                            </div><br />*@
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <span>
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @id = "txt-input" } })
+                        </span>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+
+                        <br><br />
+                        <span>
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })<br />
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @id = "txt-input" } })
+                        </span>&nbsp;
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        @*<br /><label for="">Email:</label> <br>
+                            <input type="email" name="User"
+                                   requrired><br />
+
+                            <br /><br /> <label for="">Password:</label><br>
+                            <input type="password" name="Pass"
+                                   minlength="6"
+                                   maxlength="24"
+                                   required> <br>*@
+
+
+                        <button class="log-in"> Login </button>
+
+                        <div>
+                            <center>
+                                <span>New to Premier Mart?</span>
+                                @Html.ActionLink("Register Now", "SignUp", "Admin")
+                            </center>
+                        </div>
+
+
+
+                        <div>
+                            <center>
+                                <span>Forgot Password?</span>
+                                @Html.ActionLink("Click Here", "Forget", "Admin")
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>}
+
+
+</body>
+</html>

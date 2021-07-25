@@ -1,0 +1,207 @@
+﻿@model EcommerceProject.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+
+<head>
+
+    <title>Premier Mart | Catalog</title>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/template/plugins/bs-stepper/css/bs-stepper.min.css">
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Category")'" type="button" class="btn btn-block btn-danger">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Catalog</a></li>
+                        <li class="breadcrumb-item active">Add Categories</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row-mb-2">
+                <!-- general form elements -->
+                <div class="card card-success">
+
+                    <div class="card-header">
+                        <center><h4> Add Categories </h4></center>
+                    </div>
+
+                    <!-- form start -->
+                    @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="card-body p-0">
+                            <div class="bs-stepper">
+                                <div class="bs-stepper-header" role="tablist">
+                                    @*your steps here*@
+                                    <div class="step" data-target="#logins-part">
+                                        <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                            <span class="bs-stepper-circle">1</span>
+                                            <span class="bs-stepper-label">General</span>
+                                        </button>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="step" data-target="#information-part">
+                                        <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+                                            <span class="bs-stepper-circle">2</span>
+                                            <span class="bs-stepper-label">More information</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bs-stepper-content">
+                                    <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="name">Category Name</label>
+                                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="title">Meta Tag Title</label>
+                                                    @Html.EditorFor(model => model.Meta_tag_title, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_title, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="desc">Meta Tag Description</label>
+                                                    @Html.EditorFor(model => model.Meta_tag_description, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_description, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="key">Meta Tag Keyword</label>
+                                                    @Html.EditorFor(model => model.Meta_tag_keyword, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_keyword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-5"></div>
+
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="sort">Sort Order</label>
+                                                    @Html.EditorFor(model => model.Sort_order, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Sort_order, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                                    </div>
+                                    @*logins-part*@
+                                    <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="image">Upload File</label>
+                                                    <input type="file" name="ImageFile" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-1"></div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="status">Status</label>
+                                                    <br />
+                                                    @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Please Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                                        <input type="submit" value="Add" class="btn btn-primary" />
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        @*/.card-body*@
+                    }
+                </div>
+                @*/.card*@
+
+            </div>
+        </div>
+    </section>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/template/dist/js/pages/dashboard.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+    <!-- BS-Stepper -->
+    <script src="~/template/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <script>
+        // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function () {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+    </script>
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    $("#drop").change(function () {
+        //        var ptext = $("#drop option:selected").text();
+        //        $("#hide").val(ptext);
+
+        //    })
+        //});
+        $(document).ready(function () {
+            $("#drop").on("change", function () {
+                $("#hide").val($(this).find("option:selected").text());
+            })
+        });
+
+    </script>
+</body>

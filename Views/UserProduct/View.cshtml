@@ -1,0 +1,119 @@
+﻿@model IEnumerable<EcommerceProject.Models.Product>
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<head>
+    <title>PremierMart | View Products</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/template/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/template/dist/css/adminlte.min.css">
+    @*<link href="~/css/style-starter.css" rel="stylesheet" />*@
+</head>
+<body>
+
+    <br /><br /><br /><br />
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-solid">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+
+                                <br /><br /><br />
+                                <input type="hidden" name="id" value="@item.Product_id" />
+                                <div class="col-9">
+                                    <img src="@Url.Content(item.Image)" class="product-image" alt="Product Image">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <h3 class="my-3">@item.SKU &nbsp;@item.Name</h3>
+                                <p>@item.Description</p>
+
+                                <hr>
+                                <div class="col-4">
+                                    <input type="number" placeholder="Enter Quantity" min="1" name="qty" class="form-control" required />
+                                </div>
+                                <br />
+
+                                <h4>Available Colors</h4>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-default text-center active">
+                                        <input type="radio" name="color_option" id="color_option_a1" autocomplete="off" checked>
+                                        Green
+                                        <br>
+                                        <i class="fas fa-circle fa-2x text-green"></i>
+                                    </label>
+                                    <label class="btn btn-default text-center">
+                                        <input type="radio" name="color_option" id="color_option_a2" autocomplete="off">
+                                        Blue
+                                        <br>
+                                        <i class="fas fa-circle fa-2x text-blue"></i>
+                                    </label>
+                                    <label class="btn btn-default text-center">
+                                        <input type="radio" name="color_option" id="color_option_a3" autocomplete="off">
+                                        Purple
+                                        <br>
+                                        <i class="fas fa-circle fa-2x text-purple"></i>
+                                    </label>
+                                    <label class="btn btn-default text-center">
+                                        <input type="radio" name="color_option" id="color_option_a4" autocomplete="off">
+                                        Red
+                                        <br>
+                                        <i class="fas fa-circle fa-2x text-red"></i>
+                                    </label>
+                                </div>
+
+                                <div class="bg-gray py-2 px-3 mt-4">
+                                    <h2 class="mb-0">
+                                        $@item.Price
+                                    </h2>
+                                    <h4 class="mt-0">
+                                        <small>Including Tax</small>
+                                    </h4>
+                                </div>
+
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-danger btn-lg btn-flat"><i class="fas fa-cart-plus fa-lg mr-2"></i>Add To Cart</button>                                                                       
+                                    <button type="button" onclick="location.href='@Url.Action("Home", "Home")'" class="btn btn-warning btn-lg"><i class="fa fa-eye fa-lg mr-2"></i> Continue Shopping </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+
+
+    <!-- jQuery -->
+    <script src="~/template/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/template/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/template/dist/js/demo.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('.product-image-thumb').on('click', function () {
+                var $image_element = $(this).find('img')
+                $('.product-image').prop('src', $image_element.attr('src'))
+                $('.product-image-thumb.active').removeClass('active')
+                $(this).addClass('active')
+            })
+        })</script>
+</body>

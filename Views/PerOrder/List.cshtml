@@ -1,0 +1,95 @@
+﻿@model EcommerceProject.Models.Setting
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+    <title>Premier Mart | Settings</title>
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/Styles/Service.css" />
+</head>
+
+<body>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="#">Personalize</a></li>
+                        <li class="breadcrumb-item active">Order</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header" style="background-color:darksalmon; color:white;">
+                    <center><h4>Order </h4></center>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="count">Invoice Prefix</label>
+                                @Html.TextBoxFor(m => m.Invoice_prefix, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="page">Order Status</label>
+                                @Html.TextBoxFor(m => m.OrderStatus.O_name, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <center>
+                        <div class="col-2">
+                            <button onclick="location.href='@Url.Action("List","DashBoard")'" type="button" class="btn btn-block btn-danger">
+                                <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                            </button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+            $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Sparkline -->
+    <script src="~/template/plugins/sparklines/sparkline.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/template/dist/js/pages/dashboard.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+</body>

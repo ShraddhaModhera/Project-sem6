@@ -1,0 +1,546 @@
+﻿@model EcommerceProject.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+
+<head>
+
+    <title>Premier Mart | Catalog</title>
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/template/plugins/daterangepicker/daterangepicker.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/template/plugins/bs-stepper/css/bs-stepper.min.css">
+
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Product")'" type="button" class="btn btn-block btn-danger">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Product</a></li>
+                        <li class="breadcrumb-item active">Edit Product</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- form start -->
+    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card card-success">
+
+                        <div class="card-header">
+                            <div style="color:white">
+                                <center><h4> Edit Product </h4></center>
+                            </div>
+                        </div>
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Product_id)
+
+                        <div class="card-body">
+                            <div class="bs-stepper-header" role="tablist">
+                                @*your steps here*@
+                                <div class="step" data-target="#logins-part">
+                                    <span class="bs-stepper-circle">1</span>
+                                    <span class="bs-stepper-label">General</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="name">Product Name</label>
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="sku">SKU</label>
+                                        @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Select", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="deal">Today's Deal</label>
+                                        @Html.EditorFor(model => model.Today_deals, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Today_deals, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="cat">Category</label>
+                                        @Html.DropDownListFor(model => model.Category_id, new SelectList(Model.CatSelect, "Category_id", "Name"), "Please Select", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="features">Features Avilable</label>
+                                        @Html.EditorFor(model => model.Is_feature, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Is_feature, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="form-group">
+                                        <label for="disc">Product Discription</label>
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*/.card-body*@
+                    </div>
+                    @*/.card*@
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Custom Tabs -->
+                        <div class="card">
+                            <div class="bs-stepper-header" role="tablist">
+                                @*your steps here*@
+
+                                <div class="step" data-target="#information-part">
+                                    <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bs-stepper-circle">2</span>
+                                    <span class="bs-stepper-label">More information</span>
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <ul class="nav nav-pills ml-auto p-2">
+                                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Data</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Images</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">Variant</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_4" data-toggle="tab">Price</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_5" data-toggle="tab">SEO</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_6" data-toggle="tab">Shipping</a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="upc">UPC</label>
+                                                    @Html.EditorFor(model => model.UPC, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.UPC, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="quan">Quantity</label>
+                                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="stock">Out Of Stock Status</label>
+                                                    @Html.DropDownListFor(model => model.Stock_status_id, new SelectList(Model.StockSelect, "Stock_status_id", "SS_name"), "Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="date">Date Available</label>
+                                                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                                        @Html.EditorFor(model => model.Date_available, new { htmlAttributes = new { @class = "form-control", @name = "reservationdatetime" } })
+                                                        <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4"></div>
+
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="sort">Sort Order</label>
+                                                    @Html.EditorFor(model => model.Sort_Order, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Sort_Order, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="manu">Manufacturer</label>
+                                                    @Html.DropDownListFor(model => model.Manufacturer_id, new SelectList(Model.ManuSelect, "Manufacturer_id", "Name"), "Please Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="image">Upload File</label>
+                                                <img src="@Url.Content(Model.Image)" height="70" width="70" />
+                                                <input type="file" name="ImageFile" id="file" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_3">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="vname">Variant Name</label>
+                                                    @Html.DropDownListFor(model => model.Variant_id, new SelectList(Model.VarSelect, "Variant_id", "V_name"), "Please Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-2"></div>
+
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="value">Variant Value</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div id="accordion">
+                                                    <div class="card card-warning">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title w-100">
+                                                                <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                                                                    Default Price
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <div class="form-group">
+                                                                            <br /> <label for="upc">Product Cost</label>
+                                                                        </div>
+                                                                        <br />
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">$</span>
+                                                                            </div>
+                                                                            <input type="text" id="n1" class="form-control">
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">.00</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        <center>
+                                                                            <span style="font-size:22px;">
+                                                                                <br /><br /><br />
+                                                                                <b> + </b>
+                                                                            </span>
+                                                                        </center>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <div class="form-group">
+                                                                            <label for="quan">Tax</label>
+                                                                        </div>
+                                                                        <div class="form-group clearfix">
+                                                                            <div class="icheck-primary d-inline">
+                                                                                <input type="radio" id="radioPrimary1" name="r1" checked>
+                                                                                <label for="radioPrimary1">
+                                                                                    Value
+                                                                                </label>
+                                                                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <div class="icheck-primary d-inline">
+                                                                                <input type="radio" id="radioPrimary2" name="r1">
+                                                                                <label for="radioPrimary2">
+                                                                                    Percentage
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">$</span>
+                                                                            </div>
+                                                                            <input type="text" id="n2" class="form-control" oninput="sum()" />
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">.00</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        <center>
+                                                                            <span style="font-size:22px;">
+                                                                                <br /><br /><br />
+
+                                                                                <b> = </b>
+                                                                            </span>
+                                                                        </center>
+                                                                    </div>
+                                                                    <div class="col-3">
+                                                                        <div class="form-group">
+                                                                            <br /><label for="stock">Total Price</label>
+                                                                        </div>
+                                                                        <br />
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">$</span>
+                                                                            </div>
+                                                                            @*<input type="text" class="form-control" id="result" name="price">*@
+                                                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "result" } })
+
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">.00</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card card-danger">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title w-100">
+                                                                <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
+                                                                    Discount
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <a href="#" class="nav-link">
+                                                                    <p>
+                                                                        <center><i class="fa fa-plus-circle fa-primary"></i></center>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card card-success">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title w-100">
+                                                                <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+                                                                    Special
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <a href="#" class="nav-link">
+                                                                    <p>
+                                                                        <center><i class="fa fa-plus-circle fa-primary"></i></center>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        @*card*@
+
+                                    </div>
+                                    <div class="tab-pane" id="tab_5">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="mtitle">Meta Tag Title </label>
+                                                    @Html.EditorFor(model => model.Meta_tag_title, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_title, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-3"></div>
+
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="mkey">Meta Tag Keyword </label>
+                                                    @Html.EditorFor(model => model.Meta_tag_keyword, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_keyword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="form-group">
+                                                    <label for="mdesc">Meta Tag Description</label>
+                                                    @Html.TextAreaFor(model => model.Meta_tag_description, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Meta_tag_description, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="tab_6">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="shipp">Shipping</label>
+                                                    @Html.DropDownListFor(model => model.Shipping, new SelectList(Model.ShipSelect, "Shipping_id", "Value"), "Please Select", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="height">Height</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="width">Width</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="len">Length</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-4"></div>
+                                            <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="weight">Weight</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                            <div class="card-footer">
+                                <center>
+                                    <div class="col-3">
+                                        <input type="submit" value="Save" class="btn btn-block btn-success" />
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <!-- ./card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <!-- END CUSTOM TABS -->
+
+            </div>
+        </section>
+    }
+
+    <!-- jQuery -->
+    <script src="~/template/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="~/template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/template/plugins/moment/moment.min.js"></script>
+    <script src="~/template/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="~/template/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    @*bs-custom-file-input*@
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+
+
+    <script>
+
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+        function sum() {
+            var field1 = document.getElementById("n1").value;
+            var field2 = document.getElementById("n2").value;
+
+            var res = parseInt(field1) + parseInt(field2);
+
+            if (!isNaN(res)) {
+                document.getElementById("result").value = res;
+            }
+        }
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

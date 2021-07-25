@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null; 
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VerifyAccount</title>
+    <link href="~/css/regstyle.css" rel="stylesheet" />
+    <style>
+        div {
+            padding: 15% 0% 20% 0%;
+        }
+
+        .in-text {
+            padding: 100px 400px;
+            background-color: burlywood;
+            font-size: medium;
+            color: black;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+    {
+<div class="alert alert-success">
+    <div class="in-text">
+        <strong>Success! </strong>Your account has been activated successfully.Click here to @Html.ActionLink("Login", "Login", "Admin")
+    </div>
+</div> }
+            else
+            {
+<div class="alert alert-danger">
+    <strong>Error! </strong>@ViewBag.Message
+</div>}
+</body>
+</html>

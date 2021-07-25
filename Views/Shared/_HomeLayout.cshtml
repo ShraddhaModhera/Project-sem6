@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Premier Mart</title>
+    <link href="~/css/style-starter.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <a href="~/fonts/fontawesome-webfont.eot"></a>
+    <a href="~/fonts/fontawesome-webfont.ttf"></a>
+    <a href="~/fonts/fontawesome-webfont.woff"></a>
+    <a href="~/fonts/fontawesome-webfont.woff2"></a>
+    <a href="~/fonts/FontAwesome.otf"></a>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery.countup.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/owl.carousel.js"></script>
+    <script src="~/js/theme-change.js"></script>
+</head>
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <h1>
+                    <a class="navbar-brand" href="index.html">
+                        <span>P</span>remiermart
+                    </a>
+                </h1>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="active">@Html.ActionLink("Home", "Home", "Home", new { @class = "nav-link" })</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li>@Html.ActionLink("About Us", "About", "Home", new { @class = "nav-link" })</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li>@Html.ActionLink("Service", "Service", "Home", new { @class = "nav-link" })</li>
+                    </ul>
+                    <ul class="navbar-nav search-right mt-lg-0 mt-2">
+                        <li class="nav-item mr-3" title="Search">
+                            <a href="#search" class="btn search-search">
+                                <span class="fa fa-search" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    @*<li class="nav-item">
+            <a href="@Url.Action("Contact","Home")" class="btn btn-primary d-none d-lg-block btn-style mr-2">
+                Profile
+            </a>
+        </li>*@
+                <ul>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Login","Admin")" class="btn btn-danger">
+                            <i class="fa fa-user-circle" aria-hidden="true"> </i>
+                        </a>
+                    </li>
+                    <li></li>
+                    @*<li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="@Url.Action("Login","Admin")">
+            <i class="fa fa-user-circle d-none d-lg-block mr-1" aria-hidden="true"></i>
+        </a>*@
+                    @*<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="#" class="dropdown-item">
+                <i class="fa fa-user mr-2"></i> Login / SignUp
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+                <i class="fa fa-edit mr-2"></i> Contact Us
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+                <i class="fa fa-power-off mr-2"></i>WishList
+            </a>
+        </div>*@
+                    @*</li>*@
+
+                    @*<div class="dropdown">
+
+            <button class="dropbtn" onclick="myFunction()">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#">Login/SignUp</a>
+                <a href="#">Contact Us</a>
+                <a href="#">WishList</a>
+            </div>
+        </div>*@
+                    <li class="nav-item">
+                        <a href="@Url.Action("Login","Admin")" class="btn btn-danger">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"> <span class="badge">[@Session["count"]]</span>  </i>
+                        </a>
+                    </li>
+                </ul>
+                    <!-- //toggle switch for light and dark theme -->
+                    <!-- search popup -->
+                    <div id="search" class="pop-overlay">
+                        <div class="popup">
+                            <form action="#" method="GET" class="d-sm-flex">
+                                <input type="search" placeholder="Search.." name="search" required="required" autofocus>
+                                <button type="submit">Search</button>
+                                <a class="close" href="#url">&times;</a>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /search popup -->
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <!-- footer-66 -->
+    <footer class="w3l-footer-66">
+        <section class="footer-inner-main">
+            <div class="footer-hny-grids py-5">
+                <div class="container py-lg-4">
+                    <div class="text-txt">
+                        <div class="row newsletter-grids-footer">
+                            <div class="col-lg-6 newsletter-text pr-lg-5">
+                                <h3 class="hny-title two">Newsletter</h3>
+                                <h4>
+                                    Sign up for our monthly newsletter to get the latest news, latest products,
+                                </h4>
+                            </div>
+                            <div class="col-lg-6 newsletter-right">
+                                <form action="#" method="post" class="footer-newsletter">
+
+                                    <input type="email" name="email" class="form-input" placeholder="Enter your email..">
+
+                                    <button type="submit" class="btn">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div class="row sub-columns">
+                                <div class="col-lg-4 col-md-6 sub-one-left pr-lg-4">
+                                    <h2>
+                                        <a class="navbar-brand" href="index.html">
+                                            <span>P</span>remiermart
+                                        </a>
+                                    </h2>
+                                    <!-- if logo is image enable this
+                                                          <a class="navbar-brand" href="#index.html">
+                                                              <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                                                          </a> -->
+                                    <p class="pr-lg-4">
+                                        PremierMart is Best online Ecommerce destination justifies its fashion relevance by bringing something new and chic to the table on the daily.
+                                        Fashion trends seem to change at lightning speed, yet the PremierMart Shopping app has managed to keep up without any hiccups.
+
+                                    </p>
+                                    <div class="columns-2">
+                                        <ul class="social">
+                                            <li>
+                                                <a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#github"><span class="fa fa-github" aria-hidden="true"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 sub-one-left">
+                                    <h6>Our Services</h6>
+                                    <div class="mid-footer-gd sub-two-right">
+
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("About","Home")"><span class="fa fa-angle-double-right mr-2"></span> About</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Service","Home")"><span class="fa fa-angle-double-right mr-2"></span> Services</a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span class="fa fa-angle-double-right mr-2"></span> Leads</a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span class="fa fa-angle-double-right mr-2"></span>Enquiry</a>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><span class="fa fa-angle-double-right mr-2"></span>Repair Electrnics</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="fa fa-angle-double-right mr-2"></span>Help
+                                                    Orphan
+                                                </a>
+                                            </li>
+                                            <li><a href="#support"><span class="fa fa-angle-double-right mr-2"></span>Career</a></li>
+                                            <li>
+                                                <a href="@Url.Action("Contact","Home")"><span class="fa fa-angle-double-right mr-2"></span>Contact US</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 sub-one-left">
+                                    <h6>Contact Info</h6>
+                                    <div class="sub-contact-info">
+                                        <p>Address: 111 , Golden Plaza , VIP Road , Surat , India</p>
+                                        <p class="my-3">Phone: <strong><a href="tel:+02615824552">+0261 58-245-52</a></strong></p>
+                                        <p>E-mail:<strong> <a href="mailto:premiermart42@gmail.com">premiermart42@gmail.com</a></strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="below-section">
+                <div class="container">
+                    <div class="copyright-footer">
+                        <div class="columns text-lg-left">
+                            <strong>Copyright &copy; 2021 Premier-mart.com.</strong> All rights reserved.
+                        </div>
+                        <ul class="columns text-lg-right">
+                            <li>
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                            <li>|</li>
+                            <li>
+                                <a href="#">Terms Of Use</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- copyright -->
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                <span class="fa fa-long-arrow-up" aria-hidden="true"></span>
+            </button>
+            <script>
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () {
+                    scrollFunction()
+                };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("movetop").style.display = "block";
+                    } else {
+                        document.getElementById("movetop").style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+
+                /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                    document.getElementById("myDropdown").classList.toggle("show");
+                }
+
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function (e) {
+                    if (!e.target.matches('.dropbtn')) {
+                        var myDropdown = document.getElementById("myDropdown");
+                        if (myDropdown.classList.contains('show')) {
+                            myDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            </script>
+            <!-- /move top -->
+
+        </section>
+    </footer>
+    <!--//footer-66 -->
+   
+        
+  
+</body>
+</html>

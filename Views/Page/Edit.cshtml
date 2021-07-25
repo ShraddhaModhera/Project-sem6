@@ -1,0 +1,156 @@
+﻿@model EcommerceProject.Models.Page
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+
+<head>
+
+    <title>Premier Mart | CMS</title>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/Styles/Service.css" />
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Page")'" type="button" class="btn btn-block btn-danger">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">CMS</a></li>
+                        <li class="breadcrumb-item active">Edit Pages</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- form start -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Page_id)
+
+                        <div class="card-header">
+                            <center><h4> Edit Pages </h4></center>
+                        </div>
+
+                        <div class="card-body">
+                            <p>General Information</p>
+                            <hr />
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="title">Page Title</label>
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="group">Page Group</label>
+                                    @Html.DropDownListFor(model => model.Page_group_id, new SelectList(Model.GroupSelect, "Page_group_id", "Group_name"), "Select", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="content">Page Content</label><br />
+                                    @Html.TextAreaFor(model => model.Intro, new { @class = "form-control", @id = "summernote" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="status">Status</label><br />
+                                    @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Select", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mtitle">Meta Title</label>
+                                    @Html.EditorFor(model => model.Meta_tag_title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mkey">Meta Keyword</label>
+                                    @Html.EditorFor(model => model.Meta_tag_keywords, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_keywords, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label for="mcontent">Meta Content</label><br />
+                                    @Html.TextAreaFor(model => model.Meta_tag_description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_tag_description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <center>
+                                <div class="col-3">
+                                    <input type="submit" value="Save" class="btn btn-block btn-primary" />
+                                </div>
+                            </center>
+                        </div>
+                   
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
+    }
+
+        <!-- jQuery UI 1.11.4 -->
+        <script src="~/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Sparkline -->
+        <script src="~/template/plugins/sparklines/sparkline.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="~/template/dist/js/pages/dashboard.js"></script>
+        <!-- bs-custom-file-input -->
+        <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+    </body>

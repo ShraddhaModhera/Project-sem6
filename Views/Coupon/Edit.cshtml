@@ -1,0 +1,225 @@
+﻿@model EcommerceProject.Models.Coupon
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+
+    <title>Premier Mart | Catalog</title>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/template/plugins/bs-stepper/css/bs-stepper.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/template/plugins/daterangepicker/daterangepicker.css">
+
+</head>
+
+<body>
+    <!-- Content Wrapper. Contains page content -->
+    @*<div class="content-wrapper">*@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("List","Coupon")'" type="button" class="btn btn-block btn-success">
+                        <i class="fas fa-times" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Catalog</a></li>
+                        <li class="breadcrumb-item active">Edit Coupon</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- form start -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card card-success">
+
+                        <div class="card-header">
+                            <div style="color:white">
+                                <center><h4> Edit Coupon </h4></center>
+                            </div>
+                        </div>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Coupon_id)
+
+                        <div class="card-body">
+                            <div class="bs-stepper-header" role="tablist">
+                                @*your steps here*@
+                                <div class="step" data-target="#logins-part">
+                                    <span class="bs-stepper-circle">1</span>
+                                    <span class="bs-stepper-label">General</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="code">Coupon Code</label>
+                                        @Html.EditorFor(model => model.Coupon_code, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Coupon_code, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="desc">Coupon Name</label>
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="value">Coupon Value</label>
+                                        @Html.EditorFor(model => model.Discount_value, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Discount_value, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="day">Day Left</label>
+                                        @Html.EditorFor(model => model.Day_left, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Day_left, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="sdate">Start Date</label>
+                                        <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                            @Html.EditorFor(model => model.Start_date, new { htmlAttributes = new { @class = "form-control", @name = "reservationdatetime" } })
+                                            <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="edate">End Date</label>&nbsp;&nbsp;&nbsp;
+                                        <div class="input-group date" id="reservationdatetime1" data-target-input="nearest">
+                                            @Html.EditorFor(model => model.End_date, new { htmlAttributes = new { @class = "form-control", @name = "reservationdatetime1" } })
+                                            <div class="input-group-append" data-target="#reservationdatetime1" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            @*row*@
+                        </div>
+                        @*/.card-body*@
+                    </div>
+                    @*/.card*@
+
+                </div>
+
+                <div class="row-mb-2">
+                    <!-- general form elements -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="bs-stepper-header" role="tablist">
+                                @*your steps here*@
+
+                                <div class="step" data-target="#information-part">
+                                    <span class="bs-stepper-circle">2</span>
+                                    <span class="bs-stepper-label">More information</span>
+                                </div>
+                            </div>
+                            <hr />                
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="products">Products applicable for this coupon</label>
+                                        @Html.DropDownListFor(model => model.Product_id, new SelectList(Model.ProductSelect, "Product_id", "Name"), "Please Select", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="col-3"></div>
+
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <br />
+                                        @Html.DropDownListFor(model => model.Is_active, new SelectList(Model.StatusSelect, "Status_id", "Status_name"), "Select", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*row*@
+
+                       
+                        </div>
+                        @*card-body*@
+
+                        <div class="card-footer">
+                            <center>
+                                <div class="col-3">
+                                    <input type="submit" value="Save" class="btn btn-block btn-success" />
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+                    @*card*@
+                </div>
+                @*row*@
+
+
+            </div>
+        </section>
+    }
+
+    <!-- jQuery -->
+    <script src="~/template/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="~/template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/template/plugins/moment/moment.min.js"></script>
+    <script src="~/template/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="~/template/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    @*bs-custom-file-input*@
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+    <script>
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+        $('#reservationdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+    </script>
+</body>

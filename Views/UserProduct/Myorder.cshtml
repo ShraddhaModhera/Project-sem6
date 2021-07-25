@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EcommerceProject.Models.Cart>
+
+@{
+    ViewBag.Title = "Myorder";
+    Layout = null;
+    int sum = 0;
+}
+<head>
+    <title>Premier Mart | My Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="~/css/style-starter.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="dvContents">
+        <div style="color:darkred; font-size:15px; text-align:right;">
+            <u>
+                @Session["email"]
+            </u>
+        </div>
+        <br />
+        <div style="color:palevioletred; font-size:30px;">
+            <center>MY CART</center>
+        </div>
+        <br />
+        <table class="table table-hover" width="100%" style="font-size:15px;">
+            <thead style="background-color:grey;">
+                <tr>
+                    <th>SlNO</th>
+                    <th>Product Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Proid</td>
+                        <td>@item.Pname</td>
+                        <td><img src="@Url.Content(item.Pic)" height="100" width="100" /></td>
+                        <td>$@item.Price</td>
+                        <td>@item.Qty</td>
+                        <td>$@item.Bill</td>
+                        <td>
+                            <button id="btn_delete" class="label label-primary" data-slno="@item.Proid" onclick="location.href='@Url.Action("Remove", "UserProduct", item)'">
+                                <img src="~/Images/delete.png" height="30" width="30" />
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            @foreach (var item in Model)
+            {
+                sum = Convert.ToInt32(item.Bill) + sum;
+                Session["amount"] = sum;
+}
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Your Bill</b></td>
+                    <td><b>$@sum</b></td>
+                </tr>
+            </tfoot>
+        </table>
+        <center>
+            <button type="button" onclick="location.href='@Url.Action("Home", "Home")'" class="btn btn-warning btn-lg"><i class="fa fa-eye fa-lg mr-2"></i> Continue Shopping </button>
+            <button type="button" onclick="location.href='@Url.Action("Place", "UserProduct")'" class="btn btn-success btn-lg"><i class="fa fa-shopping-bag fa-lg mr-2"></i> Place Order </button>            
+        </center>
+    </div>
+    
+</body>
+<br /><br />
+
+

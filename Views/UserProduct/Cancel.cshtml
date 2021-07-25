@@ -1,0 +1,67 @@
+﻿@model EcommerceProject.Models.CancelOrder
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Premier Mart | Cancel Order</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/Bootstrap-Payment-Form.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+
+<body style="background:url(../Images/login.jpg); background-size: cover;">
+    <br /><br /><br />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row .payment-dialog-row">
+            <div class="col-12 col-md-4 offset-md-4">
+                <div class="card credit-card-box">
+                    <div class="card-header" style="background-color:indianred;">
+                        <center>
+                            <h3><span class="panel-title-text">Cancel Order </span></h3>
+                        </center>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Full Name</label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Reason</label>
+                                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">Remarks</label>
+                                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control"  } })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12"><button class="btn btn-success btn-lg d-block w-100" type="submit">Submit</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/js/bootstrap.min.js"></script>
+    }
+</body>
+
+</html>
+

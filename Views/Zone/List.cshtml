@@ -1,0 +1,149 @@
+﻿@model IEnumerable<EcommerceProject.Models.Zone>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_masterlayout.cshtml";
+}
+<head>
+    <title>Premier Mart | Settings</title>
+    <link rel="stylesheet" href="~/template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="~/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- jsGrid -->
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="~/template/plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/Styles/Service.css" />
+</head>
+
+<body>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <button onclick="location.href='@Url.Action("Create","Zone")'" type="button" class="btn btn-block" style="background-color:darkseagreen; color:white;">
+                        <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Add Zone
+                    </button>
+
+                    <!-- iCheck -->
+                </div><!-- /.col -->
+                <div class="col-sm-10">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="#">Localization</a></li>
+                        <li class="breadcrumb-item active">Zone List</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <br />
+    <div class="card">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-bordered table-hover text-nowrap">
+                        <thead style="background-color:darkseagreen; color:white">
+                            <tr>
+                                <th>Country</th>
+                                <th>Zone Name</th>
+                                <th>Zone Code</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="5" style="color:red" align="center">
+                                        Records Not Found
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Country.Country_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Zone_name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Code)
+                                        </td>
+                                        <td>
+                                            @if (item.Is_active == 1)
+                                            {
+                                                <span class="tag-active" style="width: 71px; display: inline-block; padding: 5px 15px;">Active</span>
+                                            }
+                                            else if (item.Is_active == 0)
+                                            {
+                                                <span class="tag-inactive" style="width: 93px; display: inline-block; padding: 5px 15px;">In - Active</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Zone", new { id = item.Zone_id })"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="@Url.Action("Delete", "Zone", new { id = item.Zone_id })"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.card -->
+    <br />
+
+    @using (Html.BeginForm("List", "Zone", FormMethod.Get))
+    {
+        <div class="card">
+            <br />
+            <div class="row">
+                <div class="col-sm-4">
+                    <p> <b>&nbsp;Filter Records</b> </p>
+                </div>
+                <div class="col-sm-6">
+                    <p>
+                        Zone Name :
+                        @Html.TextBox("searching")
+                        <input type="submit" value="Search" class="btn-primary" />
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Sparkline -->
+    <script src="~/template/plugins/sparklines/sparkline.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/template/dist/js/pages/dashboard.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="~/template/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+</body>
